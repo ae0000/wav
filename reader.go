@@ -84,6 +84,8 @@ func (wav *Reader) parseHeaders() (err error) {
 	}
 
 	if wav.header.ChunkSize+8 != uint32(wav.size) {
+		fmt.Println("ignore this error")
+		wav.header.ChunkSize = uint32(wav.size) - 8
 		return ErrIncorrectChunkSize{wav.header.ChunkSize + 8, uint32(wav.size)}
 	}
 
